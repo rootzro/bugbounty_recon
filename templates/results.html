@@ -377,6 +377,21 @@
             background-color: rgba(255, 255, 255, 0.02);
         }
 
+        /* Estilo para filas marcadas como revisadas */
+        tr.row-checked {
+            opacity: 0.35;
+            background-color: rgba(255, 255, 255, 0.01) !important;
+        }
+
+        tr.row-checked td {
+            text-decoration: line-through;
+        }
+
+        tr.row-checked a,
+        tr.row-checked button {
+            pointer-events: none;
+        }
+
         .mono-text {
             font-family: 'JetBrains Mono', monospace;
         }
@@ -631,7 +646,7 @@
                             stroke-width="2">
                             <circle cx="12" cy="12" r="3" />
                             <path
-                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
                         </svg>
                         Settings
                     </a>
@@ -761,6 +776,7 @@
                         <table id="subdomainsTable" class="table-container">
                             <thead>
                                 <tr>
+                                    <th style="width: 40px; text-align: center;">Reviewed</th>
                                     <th>Subdomain / Host</th>
                                     <th>Status / Flags</th>
                                     <th>Action</th>
@@ -837,6 +853,7 @@
                         <table id="portsTable" class="table-container">
                             <thead>
                                 <tr>
+                                    <th style="width: 40px; text-align: center;">Reviewed</th>
                                     <th>Host / Subdomain</th>
                                     <th>IP</th>
                                     <th>Open Ports</th>
@@ -895,6 +912,7 @@
                         <table id="endpointsTable" class="table-container">
                             <thead>
                                 <tr>
+                                    <th style="width: 40px; text-align: center;">Reviewed</th>
                                     <th>Endpoint URL / Path</th>
                                     <th>Action</th>
                                 </tr>
@@ -929,6 +947,7 @@
                         <table id="webserversTable" class="table-container">
                             <thead>
                                 <tr>
+                                    <th style="width: 40px; text-align: center;">Reviewed</th>
                                     <th>URL / Host</th>
                                     <th>Status</th>
                                     <th>Web Server / Tech</th>
@@ -988,6 +1007,29 @@
         let currentSubdomainsList = [];
         let currentEndpointsList = [];
         let rawDashboardData = null;
+
+        // Función para manejar el estado de marcado de elementos (persistente en localStorage)
+        function toggleRowChecked(checkbox, category, identifier) {
+            const tr = checkbox.closest('tr');
+            const targetSelect = document.getElementById('targetSelect');
+            const targetName = targetSelect ? targetSelect.value : 'default';
+            const storageKey = `recon_checked_${targetName}_${category}_${identifier}`;
+
+            if (checkbox.checked) {
+                tr.classList.add('row-checked');
+                localStorage.setItem(storageKey, 'true');
+            } else {
+                tr.classList.remove('row-checked');
+                localStorage.removeItem(storageKey);
+            }
+        }
+
+        function isRowChecked(category, identifier) {
+            const targetSelect = document.getElementById('targetSelect');
+            const targetName = targetSelect ? targetSelect.value : 'default';
+            const storageKey = `recon_checked_${targetName}_${category}_${identifier}`;
+            return localStorage.getItem(storageKey) === 'true';
+        }
 
         function switchTab(tabId, event) {
             document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
@@ -1050,7 +1092,7 @@
                     tr[i].style.display = "";
                     continue;
                 }
-                const statusTd = tr[i].getElementsByTagName("td")[1];
+                const statusTd = tr[i].getElementsByTagName("td")[2]; // Ajustado por la columna del checkbox
                 if (statusTd) {
                     const txt = statusTd.textContent || statusTd.innerText;
                     tr[i].style.display = txt.trim() === code ? "" : "none";
@@ -1141,11 +1183,11 @@
             document.getElementById('vulnCountBadge').textContent = '0';
 
             document.getElementById('vulnerabilitiesTableBody').innerHTML = `<tr><td colspan="5" class="no-data">No vulnerabilities found.</td></tr>`;
-            document.getElementById('subdomainsTableBody').innerHTML = `<tr><td colspan="3" class="no-data">No subdomains found.</td></tr>`;
-            document.getElementById('portsTableBody').innerHTML = `<tr><td colspan="3" class="no-data">No open ports recorded.</td></tr>`;
+            document.getElementById('subdomainsTableBody').innerHTML = `<tr><td colspan="4" class="no-data">No subdomains found.</td></tr>`;
+            document.getElementById('portsTableBody').innerHTML = `<tr><td colspan="4" class="no-data">No open ports recorded.</td></tr>`;
             document.getElementById('wafGridContainer').innerHTML = `<div class="no-data" style="grid-column: 1 / -1;">No specific WAF technologies detected.</div>`;
-            document.getElementById('endpointsTableBody').innerHTML = `<tr><td colspan="2" class="no-data">No endpoints found.</td></tr>`;
-            document.getElementById('webserversTableBody').innerHTML = `<tr><td colspan="4" class="no-data">No web server data.</td></tr>`;
+            document.getElementById('endpointsTableBody').innerHTML = `<tr><td colspan="3" class="no-data">No endpoints found.</td></tr>`;
+            document.getElementById('webserversTableBody').innerHTML = `<tr><td colspan="5" class="no-data">No web server data.</td></tr>`;
 
             if (wafChartInstance) {
                 wafChartInstance.destroy();
@@ -1166,12 +1208,10 @@
                 return;
             }
 
-            // Sincronizar select si la función fue llamada directamente
             if (select && select.value !== targetName) {
                 select.value = targetName;
             }
 
-            // Persistir selección en storage
             localStorage.setItem('target', targetName);
             localStorage.setItem('selectedTarget', targetName);
             sessionStorage.setItem('target', targetName);
@@ -1234,6 +1274,7 @@
                 vulnBody.innerHTML = `<tr><td colspan="5" class="no-data">No vulnerabilities found.</td></tr>`;
             }
 
+            // --- SUBDOMAINS TABLE ---
             const subBody = document.getElementById('subdomainsTableBody');
             subBody.innerHTML = '';
             currentSubdomainsList = [];
@@ -1241,15 +1282,17 @@
                 data.items.forEach(item => {
                     currentSubdomainsList.push(item.subdomain);
                     const isNewBadge = item.is_new ? `<span class="badge badge-new">NEW</span>` : '';
-
-                    // Evaluación dinámica del estado del subdominio
                     const isActive = (item.status_code && item.status_code !== '-') || (item.ip && item.ip !== '-');
                     const statusBadge = isActive
                         ? `<span class="badge badge-info">Active</span>`
                         : `<span class="badge badge-warning">Inactive</span>`;
 
+                    const checked = isRowChecked('subdomain', item.subdomain);
                     const tr = document.createElement('tr');
+                    if (checked) tr.classList.add('row-checked');
+
                     tr.innerHTML = `
+                        <td style="text-align: center;"><input type="checkbox" ${checked ? 'checked' : ''} onchange="toggleRowChecked(this, 'subdomain', '${item.subdomain}')" style="cursor: pointer; width: 16px; height: 16px;"></td>
                         <td class="mono-text">${item.subdomain} ${isNewBadge}</td>
                         <td>${statusBadge}</td>
                         <td><a href="https://${item.subdomain}" target="_blank" class="link-action"><i class="fa-solid fa-external-link"></i></a></td>
@@ -1257,17 +1300,22 @@
                     subBody.appendChild(tr);
                 });
             } else {
-                subBody.innerHTML = `<tr><td colspan="3" class="no-data">No subdomains found.</td></tr>`;
+                subBody.innerHTML = `<tr><td colspan="4" class="no-data">No subdomains found.</td></tr>`;
             }
 
+            // --- PORTS TABLE ---
             const portsBody = document.getElementById('portsTableBody');
             portsBody.innerHTML = '';
             const itemsWithPorts = data.items ? data.items.filter(i => i.ports && i.ports.length > 0) : [];
             if (itemsWithPorts.length > 0) {
                 itemsWithPorts.forEach(item => {
                     const ipText = item.ip && item.ip !== '-' ? item.ip : '-';
+                    const checked = isRowChecked('port', item.subdomain);
                     const tr = document.createElement('tr');
+                    if (checked) tr.classList.add('row-checked');
+
                     tr.innerHTML = `
+                        <td style="text-align: center;"><input type="checkbox" ${checked ? 'checked' : ''} onchange="toggleRowChecked(this, 'port', '${item.subdomain}')" style="cursor: pointer; width: 16px; height: 16px;"></td>
                         <td class="mono-text">${item.subdomain}</td>
                         <td class="mono-text" style="color: var(--cyan-accent);">${ipText}</td>
                         <td style="color: var(--success);" class="mono-text">${item.ports.join(', ')}</td>
@@ -1275,7 +1323,7 @@
                     portsBody.appendChild(tr);
                 });
             } else {
-                portsBody.innerHTML = `<tr><td colspan="3" class="no-data">No open ports recorded.</td></tr>`;
+                portsBody.innerHTML = `<tr><td colspan="4" class="no-data">No open ports recorded.</td></tr>`;
             }
 
             const wafGrid = document.getElementById('wafGridContainer');
@@ -1297,6 +1345,7 @@
                 wafGrid.innerHTML = `<div class="no-data" style="grid-column: 1 / -1;">No specific WAF technologies detected.</div>`;
             }
 
+            // --- ENDPOINTS TABLE ---
             const endBody = document.getElementById('endpointsTableBody');
             endBody.innerHTML = '';
             currentEndpointsList = [];
@@ -1305,17 +1354,22 @@
                     currentEndpointsList.push(e.url);
                 });
                 data.endpoints.slice(0, 100).forEach(e => {
+                    const checked = isRowChecked('endpoint', e.url);
                     const tr = document.createElement('tr');
+                    if (checked) tr.classList.add('row-checked');
+
                     tr.innerHTML = `
+                        <td style="text-align: center;"><input type="checkbox" ${checked ? 'checked' : ''} onchange="toggleRowChecked(this, 'endpoint', '${e.url}')" style="cursor: pointer; width: 16px; height: 16px;"></td>
                         <td class="mono-text" style="font-size: 0.8125rem; word-break: break-all;">${e.url}</td>
                         <td><a href="${e.url}" target="_blank" class="link-action" style="font-size: 0.8125rem;"><i class="fa-solid fa-external-link"></i></a></td>
                     `;
                     endBody.appendChild(tr);
                 });
             } else {
-                endBody.innerHTML = `<tr><td colspan="2" class="no-data">No endpoints found.</td></tr>`;
+                endBody.innerHTML = `<tr><td colspan="3" class="no-data">No endpoints found.</td></tr>`;
             }
 
+            // --- WEB SERVERS TABLE ---
             const webBody = document.getElementById('webserversTableBody');
             webBody.innerHTML = '';
             if (data.items && data.items.length > 0) {
@@ -1328,8 +1382,12 @@
                     const ipText = item.ip && item.ip !== '-' ? item.ip : '-';
                     const statusCodeText = item.status_code && item.status_code !== '-' ? item.status_code : '-';
 
+                    const checked = isRowChecked('webserver', item.subdomain);
                     const tr = document.createElement('tr');
+                    if (checked) tr.classList.add('row-checked');
+
                     tr.innerHTML = `
+                        <td style="text-align: center;"><input type="checkbox" ${checked ? 'checked' : ''} onchange="toggleRowChecked(this, 'webserver', '${item.subdomain}')" style="cursor: pointer; width: 16px; height: 16px;"></td>
                         <td class="mono-text" style="font-size: 0.8125rem;"><a href="https://${item.subdomain}" target="_blank" class="link-action">https://${item.subdomain}</a></td>
                         <td><span class="badge ${statusBadge}">${statusCodeText}</span></td>
                         <td style="font-size: 0.8125rem; color: var(--text-muted);">${serverText}</td>
@@ -1338,7 +1396,7 @@
                     webBody.appendChild(tr);
                 });
             } else {
-                webBody.innerHTML = `<tr><td colspan="4" class="no-data">No web server data.</td></tr>`;
+                webBody.innerHTML = `<tr><td colspan="5" class="no-data">No web server data.</td></tr>`;
             }
 
             updateCharts(data);
@@ -1427,8 +1485,6 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             const select = document.getElementById('targetSelect');
-
-            // 1. Get valid selector options
             const validOptions = select ? Array.from(select.options).map(opt => opt.value).filter(val => val !== "") : [];
 
             if (validOptions.length === 0) {
@@ -1439,16 +1495,13 @@
                 return;
             }
 
-            // 2. Get URL parameter (?target=xxx) or Storage
             const urlParams = new URLSearchParams(window.location.search);
             let target = urlParams.get('target') || localStorage.getItem('target') || localStorage.getItem('selectedTarget') || sessionStorage.getItem('target');
 
-            // 3. Verify if the target obtained really exists among the server options
             if (target && validOptions.includes(target)) {
                 select.value = target;
                 onTargetChange(target);
             } else {
-                // If the saved target no longer exists in the backend, clean storage and use the first option
                 localStorage.removeItem('target');
                 localStorage.removeItem('selectedTarget');
                 sessionStorage.removeItem('target');
