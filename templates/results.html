@@ -377,7 +377,7 @@
             background-color: rgba(255, 255, 255, 0.02);
         }
 
-        /* Estilo para filas marcadas como revisadas */
+        /* Style for rows marked as revised*/
         tr.row-checked {
             opacity: 0.35;
             background-color: rgba(255, 255, 255, 0.01) !important;
@@ -866,7 +866,7 @@
                 </div>
             </section>
 
-            <!-- WAF SECTION CON CAJA DE BÚSQUEDA -->
+            <!-- WAF SECTION WITH SEARCH BOX -->
             <section id="tab-waf" class="tab-content" style="display: none;">
                 <div class="card">
                     <div
@@ -1008,7 +1008,7 @@
         let currentEndpointsList = [];
         let rawDashboardData = null;
 
-        // Función para manejar el estado de marcado de elementos (persistente en localStorage)
+        // Function to manage the marking status of elements (persistent in localStorage)
         function toggleRowChecked(checkbox, category, identifier) {
             const tr = checkbox.closest('tr');
             const targetSelect = document.getElementById('targetSelect');
@@ -1061,7 +1061,7 @@
             }
         }
 
-        // Filtro para las tarjetas Grid de la sección WAF
+        // Filter for Grid cards in the WAF section
         function filterWafCards(containerId, inputId) {
             const input = document.getElementById(inputId);
             const filter = input.value.toLowerCase();
@@ -1079,7 +1079,7 @@
             }
         }
 
-        // Filtro de estado HTTP rápido
+        // Fast HTTP status filter
         function filterStatus(code, btn) {
             document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
             btn.classList.add('active');
@@ -1100,7 +1100,7 @@
             }
         }
 
-        // Exportación multiformato (TXT, CSV, JSON)
+        // Multiformat export (TXT, CSV, JSON)
         function exportData(type, format) {
             const targetSelect = document.getElementById('targetSelect');
             const targetName = targetSelect ? targetSelect.value : 'target';

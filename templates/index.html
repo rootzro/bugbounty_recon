@@ -10,6 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --bg-body: #050608;
@@ -18,7 +19,7 @@
             --border-color: #27272a;
             --border-hover: #3f3f46;
 
-            /* Stealth Dark Monochrome Palette (Login style) */
+            /* Stealth Dark Monochrome Palette */
             --primary-accent: #f4f4f5;
             --primary-hover: #e4e4e7;
             --cyan-accent: #06b6d4;
@@ -67,9 +68,7 @@
             z-index: 9999;
         }
 
-        /* ==========================================
-           SIDEBAR
-           ========================================== */
+        /* SIDEBAR */
         .sidebar {
             width: 250px;
             background-color: var(--bg-sidebar);
@@ -180,9 +179,7 @@
             color: var(--danger);
         }
 
-        /* ==========================================
-           MAIN AREA AND CONTENT
-           ========================================== */
+        /* MAIN CONTENT */
         .main-content {
             flex: 1;
             display: flex;
@@ -215,7 +212,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 16px;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
         }
 
         .stat-card {
@@ -346,12 +343,43 @@
             background-color: #000000;
         }
 
-        .scan-input::placeholder {
-            color: var(--text-muted);
-            font-family: 'Inter', sans-serif;
+        .filter-input {
+            padding: 8px 12px;
+            background-color: #08090d;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
         }
 
-        /* Botón Estilo Login */
+        .filter-input:focus {
+            outline: none;
+            border-color: #52525b;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
+        }
+
+        .input-wrapper-search {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .input-wrapper-search i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .input-wrapper-search input {
+            padding-left: 36px;
+            width: 100%;
+        }
+
         .btn-primary {
             padding: 10px 20px;
             background-color: var(--primary-accent);
@@ -370,10 +398,6 @@
         .btn-primary:hover {
             background-color: var(--primary-hover);
             box-shadow: 0 0 16px rgba(255, 255, 255, 0.1);
-        }
-
-        .btn-primary:active {
-            transform: translateY(1px);
         }
 
         .btn-secondary {
@@ -567,7 +591,7 @@
                             stroke-width="2">
                             <circle cx="12" cy="12" r="3" />
                             <path
-                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
                         </svg>
                         Settings
                     </a>
@@ -591,6 +615,35 @@
                 <h1 class="page-title">Recon Workspace</h1>
             </header>
 
+            <!-- 1. CONTADORES GLOBALES (PRIMERO) -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Total Targets</div>
+                    <div class="stat-value" id="globalStatTargets">{{ targets|length if targets else 0 }}</div>
+                    <div class="stat-desc" style="color: var(--cyan-accent); font-size: 0.75rem; margin-top: 4px;"><i
+                            class="fa-solid fa-server"></i> Scanned</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Subdomains Total</div>
+                    <div class="stat-value" id="globalStatSubdomains">0</div>
+                    <div class="stat-desc" style="color: var(--success); font-size: 0.75rem; margin-top: 4px;"><i
+                            class="fa-solid fa-sitemap"></i> Discovered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Endpoints</div>
+                    <div class="stat-value" id="globalStatEndpoints">0</div>
+                    <div class="stat-desc" style="color: var(--text-muted); font-size: 0.75rem; margin-top: 4px;"><i
+                            class="fa-solid fa-link"></i> Routes & Params</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Vulns</div>
+                    <div class="stat-value" id="globalStatVulns">0</div>
+                    <div class="stat-desc" style="color: var(--sev-high); font-size: 0.75rem; margin-top: 4px;"><i
+                            class="fa-solid fa-triangle-exclamation"></i> Findings</div>
+                </div>
+            </div>
+
+            <!-- 2. TARJETAS DE VULNERABILIDADES POR SEVERIDAD (DESPUÉS) -->
             <div class="stats-grid">
                 <div class="stat-card critical">
                     <div class="stat-label">CRITICAL</div>
@@ -610,6 +663,7 @@
                 </div>
             </div>
 
+            <!-- CAJA DE LANZAMIENTO DE ESCANEO -->
             <div class="card">
                 <div class="card-title">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -643,11 +697,25 @@
                 <div id="terminalBlock" class="terminal-block"></div>
             </div>
 
+            <!-- TABLA DE SCANNED TARGETS CON BUSCADOR EN TIEMPO REAL -->
             <div class="card" style="padding: 0; overflow: hidden;">
-                <div class="card-title" style="padding: 20px 24px 12px 24px; margin-bottom: 0;">Scanned Targets
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; padding: 20px 24px 12px 24px; flex-wrap: wrap; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <h3 class="card-title" style="margin-bottom: 0;">Scanned Targets</h3>
+                        <span id="targetCounter" class="badge badge-info" style="font-size: 0.7rem;">{{ targets|length
+                            if targets else 0 }} targets</span>
+                    </div>
+
+                    <div class="input-wrapper-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="searchTargetsInput" placeholder="Filter targets..."
+                            onkeyup="filterTargetsTable()" class="filter-input">
+                    </div>
                 </div>
+
                 <div id="tableWrapper" class="table-wrapper" style="border: none; border-radius: 0;">
-                    <table class="table-container">
+                    <table id="scannedTargetsTable" class="table-container">
                         <thead>
                             <tr>
                                 <th>Target</th>
@@ -655,7 +723,8 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="scannedTargetsBody">
+                            {% if targets %}
                             {% for target in targets %}
                             <tr>
                                 <td class="target-name" onclick="fetchTargetStats('{{ target }}')"
@@ -691,12 +760,13 @@
                                     </div>
                                 </td>
                             </tr>
+                            {% endfor %}
                             {% else %}
                             <tr>
                                 <td colspan="3" style="color: var(--text-muted); text-align: center; padding: 24px;">No
                                     saved scans yet.</td>
                             </tr>
-                            {% endfor %}
+                            {% endif %}
                         </tbody>
                     </table>
                 </div>
@@ -711,6 +781,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             checkActiveScans();
+            loadGlobalMetrics();
 
             const firstTarget = document.querySelector('.table-container tbody tr .target-name');
             if (firstTarget) {
@@ -718,18 +789,95 @@
             }
         });
 
+        // Filtro de búsqueda en tiempo real
+        function filterTargetsTable() {
+            const input = document.getElementById("searchTargetsInput");
+            const filter = input.value.toLowerCase().trim();
+            const tbody = document.getElementById("scannedTargetsBody");
+            const tr = tbody.getElementsByTagName("tr");
+            const counterBadge = document.getElementById("targetCounter");
+
+            let visibleCount = 0;
+            let totalCount = 0;
+
+            for (let i = 0; i < tr.length; i++) {
+                if (tr[i].querySelector('td[colspan]')) continue;
+
+                totalCount++;
+                const targetTd = tr[i].getElementsByTagName("td")[0];
+
+                if (targetTd) {
+                    const txtValue = targetTd.textContent || targetTd.innerText;
+                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        visibleCount++;
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+
+            if (counterBadge) {
+                if (filter !== "") {
+                    counterBadge.textContent = `${visibleCount} of ${totalCount} targets`;
+                } else {
+                    counterBadge.textContent = `${totalCount} targets`;
+                }
+            }
+        }
+
+        // Cargar métricas globales de todos los targets
+        async function loadGlobalMetrics() {
+            const rows = document.querySelectorAll('#scannedTargetsBody tr');
+            let totalSubdomains = 0;
+            let totalEndpoints = 0;
+            let crit = 0, high = 0, med = 0, low = 0;
+
+            for (const row of rows) {
+                if (row.querySelector('td[colspan]')) continue;
+                const targetName = row.querySelector('.target-name');
+                if (!targetName) continue;
+
+                const t = targetName.textContent.trim();
+                try {
+                    const res = await fetch(`/api/target/${encodeURIComponent(t)}/details`);
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (data.summary) {
+                            totalSubdomains += data.summary.total_subdomains || 0;
+                            totalEndpoints += data.summary.total_endpoints || 0;
+
+                            if (data.summary.vuln_stats) {
+                                const v = data.summary.vuln_stats;
+                                crit += v.critical || 0;
+                                high += v.high || 0;
+                                med += v.medium || 0;
+                                low += (v.low || 0) + (v.info || 0);
+                            }
+                        }
+                    }
+                } catch (e) {
+                    console.error("Error fetching metrics for target:", t, e);
+                }
+            }
+
+            let totalVulns = crit + high + med + low;
+
+            document.getElementById('globalStatSubdomains').textContent = totalSubdomains;
+            document.getElementById('globalStatEndpoints').textContent = totalEndpoints;
+            document.getElementById('globalStatVulns').textContent = totalVulns;
+        }
+
         function viewResults(event, target) {
             if (event) event.preventDefault();
             if (!target) return;
 
-            // Update storage keys used by the results page
             localStorage.setItem('target', target);
             localStorage.setItem('selectedTarget', target);
             localStorage.setItem('selected_target', target);
             sessionStorage.setItem('target', target);
             sessionStorage.setItem('selectedTarget', target);
 
-            // Redirect with URL-encoded query string
             window.location.href = `/results?target=${encodeURIComponent(target)}`;
         }
 
@@ -740,13 +888,12 @@
                 if (!res.ok) return;
                 const data = await res.json();
 
-                // Compatible con múltiples estructuras de respuesta JSON
                 const stats = (data.summary && data.summary.vuln_stats) || data.vuln_stats || data.summary || data;
 
                 document.getElementById('stat-critical').textContent = stats.critical || 0;
                 document.getElementById('stat-high').textContent = stats.high || 0;
                 document.getElementById('stat-medium').textContent = stats.medium || 0;
-                document.getElementById('stat-low').textContent = stats.low || 0;
+                document.getElementById('stat-low').textContent = (stats.low || 0) + (stats.info || 0);
             } catch (err) {
                 console.error("Error loading vulnerability statistics:", err);
             }
@@ -806,7 +953,6 @@
                     currentTaskId = data.task_id;
                     terminal.innerHTML += `<div>[+] Task queued with ID: <span style="color: var(--cyan-accent)">${data.task_id}</span></div>`;
                     pollStatus(data.task_id);
-                    refreshTargetsTable();
                 } else {
                     resetButtons();
                     terminal.innerHTML += `<div style="color: var(--danger)">[-] Error: ${data.detail || 'Could not start the scan'}</div>`;
@@ -866,15 +1012,14 @@
                         terminal.innerHTML += `<div style="color: var(--success); font-weight: 600; margin-top: 10px;">[✔] Scan completed successfully! Targets list updated.</div>`;
                         terminal.scrollTop = terminal.scrollHeight;
 
-                        refreshTargetsTable();
                         fetchTargetStats(finishedTarget);
+                        setTimeout(() => window.location.reload(), 2000);
 
                     } else if (data.state === 'FAILURE' || data.state === 'REVOKED') {
                         clearInterval(pollInterval);
                         resetButtons();
                         terminal.innerHTML += `<div style="color: var(--danger); margin-top: 10px;">[-] The scan finished or was canceled (State: ${data.state}).</div>`;
                         terminal.scrollTop = terminal.scrollHeight;
-                        refreshTargetsTable();
                     }
                 } catch (err) {
                     console.error("Error querying scan status:", err);
@@ -893,83 +1038,38 @@
             }
 
             const terminal = document.getElementById('terminalBlock');
-            const btnStop = document.getElementById('btnStopScan');
-
-            btnStop.disabled = true;
-            terminal.innerHTML += `<div style="color: var(--danger); font-weight: 600; margin-top: 6px;">[!] Requesting immediate stop of the container and task...</div>`;
-            terminal.scrollTop = terminal.scrollHeight;
 
             try {
-                const res = await fetch(`/api/scan/stop/${currentTaskId}`, {
-                    method: 'POST'
-                });
-
-                const data = await res.json();
-
+                const res = await fetch(`/api/scan/stop/${currentTaskId}`, { method: 'POST' });
                 if (res.ok) {
+                    terminal.innerHTML += `<div style="color: var(--warning); margin-top: 8px;">[!] Scan stopped by user.</div>`;
                     if (pollInterval) clearInterval(pollInterval);
-                    terminal.innerHTML += `<div style="color: var(--success); margin-top: 4px;">[✔] ${data.message || 'Scan and container stopped successfully.'}</div>`;
                     resetButtons();
-                    refreshTargetsTable();
                 } else {
-                    alert('Error stopping: ' + (data.detail || 'Could not cancel the task.'));
-                    btnStop.disabled = false;
+                    alert("Could not stop the scan.");
                 }
             } catch (err) {
-                alert('Error connecting to the server to stop the scan.');
-                btnStop.disabled = false;
+                console.error("Error stopping scan:", err);
             }
         }
 
         function resetButtons() {
-            const btnStart = document.getElementById('btnStartScan');
-            const btnStop = document.getElementById('btnStopScan');
-            btnStart.disabled = false;
-            btnStop.style.display = 'none';
-            btnStop.disabled = false;
+            document.getElementById('btnStartScan').disabled = false;
+            document.getElementById('btnStopScan').style.display = 'none';
             currentTaskId = null;
         }
 
-        async function refreshTargetsTable() {
+        async function deleteTarget(targetName) {
+            if (!confirm(`Are you sure you want to delete scan "${targetName}"?`)) return;
             try {
-                const res = await fetch(window.location.href);
+                const res = await fetch(`/api/target/${encodeURIComponent(targetName)}`, { method: 'DELETE' });
                 if (res.ok) {
-                    const html = await res.text();
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, 'text/html');
-                    const newWrapper = doc.querySelector('#tableWrapper');
-                    if (newWrapper) {
-                        document.querySelector('#tableWrapper').innerHTML = newWrapper.innerHTML;
-                    }
-                }
-            } catch (err) {
-                console.error("Error updating table:", err);
-            }
-        }
-
-        async function deleteTarget(target) {
-            if (!confirm(`Are you sure you want to delete the results of ${target}?`)) return;
-
-            try {
-                const res = await fetch(`/api/target/${encodeURIComponent(target)}`, { method: 'DELETE' });
-                if (res.ok) {
-                    refreshTargetsTable();
-                    document.getElementById('stat-critical').textContent = '0';
-                    document.getElementById('stat-high').textContent = '0';
-                    document.getElementById('stat-medium').textContent = '0';
-                    document.getElementById('stat-low').textContent = '0';
+                    window.location.reload();
                 } else {
-                    let errText = 'Could not delete';
-                    try {
-                        const data = await res.json();
-                        errText = data.detail || errText;
-                    } catch (e) {
-                        errText = await res.text();
-                    }
-                    alert('Error deleting: ' + errText);
+                    alert("Could not delete target.");
                 }
             } catch (err) {
-                alert('Network error trying to delete target.');
+                console.error("Delete error:", err);
             }
         }
     </script>
