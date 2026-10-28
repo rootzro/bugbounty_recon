@@ -5,7 +5,7 @@
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Security](https://img.shields.io/badge/Security-Bug%20Bounty-red?style=for-the-badge)
 
-**BugBounty Recon(v)** is a web platform and automated framework designed to orchestrate reconnaissance pipelines for security audits and Bug Bounty programs. It seamlessly integrates the most popular community tools into a continuous workflow, all managed through an intuitive web interface.
+**BugBounty Recon** is a web platform and automated framework designed to orchestrate reconnaissance pipelines for security audits and Bug Bounty programs. It seamlessly integrates the most popular community tools into a continuous workflow, all managed through an intuitive web interface.
 
 <img width="1355" height="587" alt="Captura desde 2026-09-07 16-33-59" src="https://github.com/user-attachments/assets/cc198c4b-16be-4642-88ee-de738bc6dc11" />
 
@@ -59,7 +59,7 @@ The fastest and recommended way to deploy the platform is using Docker.
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/rootzro/bugbounty_reconv.git
+   git clone https://github.com/rootzro/bugbounty_recon.git
    cd bugbounty_reconv
    ```
 
