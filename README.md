@@ -30,7 +30,7 @@
 ## 📁 Project Structure
 
 ```text
-bugbounty_reconv/
+bugbounty_recon/
 ├── main.py                     # Web application entry point
 ├── tasks.py                    # Asynchronous task manager (background jobs)
 ├── docker-compose.yml          # Container orchestration
